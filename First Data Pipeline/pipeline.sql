@@ -86,3 +86,32 @@ when not matched then
 -- view data after merging
 select * from CUSTOMER_ORDERS order by delivery_date desc;
 
+
+
+-- create summary table
+use database BAKERY_DB;
+use schema ORDERS;
+create table SUMMARY_ORDERS(
+  delivery_date date,
+  baked_good_type varchar,
+  total_quantity number
+);
+
+-- construct a SQL query that summarizes the customer order data by delivery date, and baked good type
+select delivery_date, baked_good_type, sum(quantity) as total_quantity
+  from CUSTOMER_ORDERS
+  group by all;
+
+-- truncate summary table
+truncate table SUMMARY_ORDERS;
+
+-- insert summarized data into the summary table
+-- Listing 2.3 
+insert into SUMMARY_ORDERS(delivery_date, baked_good_type, total_quantity)
+  select delivery_date, baked_good_type, sum(quantity) as total_quantity
+  from CUSTOMER_ORDERS
+  group by all;
+
+-- view data in the summary table
+select * from SUMMARY_ORDERS;
+
