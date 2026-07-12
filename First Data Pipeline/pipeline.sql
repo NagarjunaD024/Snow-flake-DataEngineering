@@ -115,3 +115,57 @@ insert into SUMMARY_ORDERS(delivery_date, baked_good_type, total_quantity)
 -- view data in the summary table
 select * from SUMMARY_ORDERS;
 
+-- create task that executes the previous steps on schedule:
+-- - truncates the staging table
+-- - loads data from the internal stage into the staging table using the COPY command
+-- - merges data from the staging table into the target table
+-- - truncates the summary table
+-- - inserts summarized data into the summary table
+-- - executes every 10 minutes (for testing) - later will be rescheduled to run once every evening
+use database BAKERY_DB;
+use schema ORDERS;
+create or replace task PROCESS_ORDERS
+  warehouse = BAKERY_WH
+  schedule = '10 M'
+as
+begin
+  truncate table ORDERS_STG;
+  copy into ORDERS_STG
+  from (
+    select $1, $2, $3, $4, $5, metadata$filename, current_timestamp() 
+    from @ORDERS_STAGE
+  )
+  file_format = (type = csv, skip_header = 1)
+  on_error = abort_statement
+  purge = true;
+
+  merge into CUSTOMER_ORDERS tgt
+  using ORDERS_STG as src
+  on src.customer = tgt.customer and src.delivery_date = tgt.delivery_date and src.baked_good_type = tgt.baked_good_type
+  when matched then 
+    update set tgt.quantity = src.quantity, tgt.source_file_name = src.source_file_name, tgt.load_ts = current_timestamp()
+  when not matched then
+    insert (customer, order_date, delivery_date, baked_good_type, quantity, source_file_name, load_ts)
+    values(src.customer, src.order_date, src.delivery_date, src.baked_good_type, src.quantity, src.source_file_name, current_timestamp());
+
+  truncate table SUMMARY_ORDERS;
+  insert into SUMMARY_ORDERS(delivery_date, baked_good_type, total_quantity)
+    select delivery_date, baked_good_type, sum(quantity) as total_quantity
+    from CUSTOMER_ORDERS
+    group by all;
+end;
+
+-- grant EXECUTE TASK privilege to the user who will be executing the task
+use role accountadmin;
+grant execute task on account to role sysadmin;
+use role sysadmin;
+
+-- manually execute task to test
+execute task PROCESS_ORDERS;
+
+-- view all previous and scheduled task executions
+-- Listing 2.4 
+select *
+  from table(information_schema.task_history())
+  order by scheduled_time desc;
+
