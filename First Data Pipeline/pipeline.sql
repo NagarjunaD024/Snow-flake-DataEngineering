@@ -22,3 +22,22 @@ create table ORDERS_STG (
   load_ts timestamp
 );
 
+-- copy data from the internal stage to the staging table using parameters:
+-- - file_format to specify that the header line is to be skipped
+-- - on_error to specify that the statement is to be aborted if an error is encountered
+-- - purge the csv file from the internal stage after loading data
+-- Listing 2.1 
+use database BAKERY_DB;
+use schema ORDERS;
+copy into ORDERS_STG
+from (
+  select $1, $2, $3, $4, $5, metadata$filename, current_timestamp() 
+  from @ORDERS_STAGE
+)
+file_format = (type = csv, skip_header = 1)
+on_error = abort_statement
+purge = true;
+
+-- view the data that was loaded
+select * from ORDERS_STG;
+
