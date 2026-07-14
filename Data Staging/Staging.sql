@@ -44,3 +44,9 @@ create stage BISTRO_SAS_STAGE
 
 -- view files in the external stage
 list @BISTRO_SAS_STAGE;
+
+-- create a named file format
+create file format ORDERS_CSV_FORMAT
+  type = csv
+  field_delimiter = ','
+  skip_header = 1;
