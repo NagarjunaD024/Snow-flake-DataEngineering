@@ -50,3 +50,23 @@ create file format ORDERS_CSV_FORMAT
   type = csv
   field_delimiter = ','
   skip_header = 1;
+
+  -- create the external stage by adding the file format
+create or replace stage BISTRO_STAGE
+  storage_integration = BISTRO_INTEGRATION
+  url = 'azure://bakeryorders001.blob.core.windows.net/orderfiles'
+  file_format = ORDERS_CSV_FORMAT;
+
+-- create staging table for restaurant orders
+use database BAKERY_DB;
+use schema EXTERNAL_ORDERS;
+create table ORDERS_BISTRO_STG (
+  customer varchar,
+  order_date date,
+  delivery_date date,
+  baked_good_type varchar,
+  quantity number,
+  source_file_name varchar,
+  load_ts timestamp
+);
+
