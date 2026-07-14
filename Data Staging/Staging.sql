@@ -137,3 +137,16 @@ from ORDERS_BISTRO_EXT;
 -- refresh the external table
 alter external table ORDERS_BISTRO_EXT refresh;
 
+
+-- create a materialized view
+use database BAKERY_DB;
+use schema EXTERNAL_ORDERS;
+create materialized view ORDERS_BISTRO_MV as
+select customer, order_date, delivery_date, 
+  baked_good_type, quantity, source_file_name
+from ORDERS_BISTRO_EXT;
+
+-- query the materialized view
+select * 
+from ORDERS_BISTRO_MV;
+
