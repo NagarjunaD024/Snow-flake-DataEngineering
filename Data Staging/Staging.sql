@@ -30,7 +30,7 @@ use schema EXTERNAL_ORDERS;
 -- Listing 3.1 
 create stage BISTRO_STAGE
   storage_integration = BISTRO_INTEGRATION
-  url = 'azure://bakeryorders001.blob.core.windows.net/orderfiles';
+  url = 'azure://bakeryorders897764.blob.core.windows.net/order_files/';
 
 -- Upload a sample file named Orders_2023-08-04.csv to the storage container
 
