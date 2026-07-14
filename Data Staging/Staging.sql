@@ -89,3 +89,11 @@ select *
 from information_schema.load_history
 where schema_name = 'EXTERNAL_ORDERS' and table_name = 'ORDERS_BISTRO_STG'
 order by last_load_time desc;
+
+
+-- add a directory table to the stage
+alter stage BISTRO_STAGE
+set directory = (enable = true);
+
+-- manually refresh the directory
+alter stage BISTRO_STAGE refresh;
