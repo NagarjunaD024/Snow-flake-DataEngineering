@@ -111,5 +111,29 @@ from (
   from @BISTRO_STAGE/202308
 )
 file_format = ORDERS_CSV_FORMAT
-on_error = abort_statement
-;
+on_error = abort_statement;
+
+
+-- create an external table 
+-- Listing 3.4 
+use database BAKERY_DB;
+use schema EXTERNAL_ORDERS;
+create external table ORDERS_BISTRO_EXT (
+  customer varchar as (VALUE:c1::varchar),
+  order_date date as (VALUE:c2::date),
+  delivery_date date as (VALUE:c3::date),
+  baked_good_type varchar as (VALUE:c4::varchar),
+  quantity number as (VALUE:c5::number),
+  source_file_name varchar as metadata$filename
+)
+location = @BISTRO_STAGE
+auto_refresh = FALSE
+file_format = ORDERS_CSV_FORMAT;
+
+-- query the external table
+select * 
+from ORDERS_BISTRO_EXT;
+
+-- refresh the external table
+alter external table ORDERS_BISTRO_EXT refresh;
+
