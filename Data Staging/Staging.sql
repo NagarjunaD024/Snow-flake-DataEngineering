@@ -97,3 +97,19 @@ set directory = (enable = true);
 
 -- manually refresh the directory
 alter stage BISTRO_STAGE refresh;
+
+-- query the directory table
+select * 
+from directory (@BISTRO_STAGE);
+
+-- Upload additional CSV files to the container in the 202308 path
+
+-- load data from the stage into the staging table by specifying a path
+copy into ORDERS_BISTRO_STG
+from (
+  select $1, $2, $3, $4, $5, metadata$filename, current_timestamp() 
+  from @BISTRO_STAGE/202308
+)
+file_format = ORDERS_CSV_FORMAT
+on_error = abort_statement
+;
