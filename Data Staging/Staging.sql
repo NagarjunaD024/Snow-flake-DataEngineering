@@ -70,3 +70,12 @@ create table ORDERS_BISTRO_STG (
   load_ts timestamp
 );
 
+-- load data from the stage into the staging table
+-- Listing 3.3 
+copy into ORDERS_BISTRO_STG
+from (
+  select $1, $2, $3, $4, $5, metadata$filename, current_timestamp() 
+  from @BISTRO_STAGE
+)
+file_format = ORDERS_CSV_FORMAT
+on_error = abort_statement;
