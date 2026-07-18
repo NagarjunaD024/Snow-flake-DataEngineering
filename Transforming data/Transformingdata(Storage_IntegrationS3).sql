@@ -78,3 +78,15 @@ select
 from ORDERS_PARK_INN_RAW_STG;
 
 
+
+-- select the values from the second level keys using LATERAL FLATTEN
+select 
+  customer_orders:"Customer"::varchar as customer, 
+  customer_orders:"Order date"::date as order_date, 
+  value:"Delivery date"::date as delivery_date,
+  value:"Orders by day"
+from ORDERS_PARK_INN_RAW_STG,
+lateral flatten (input => customer_orders:"Orders");
+
+
+
