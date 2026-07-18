@@ -49,3 +49,7 @@ exception
 end;
 $$
 ;
+
+
+-- execute the stored procedure
+call LOAD_CUSTOMER_ORDERS();
