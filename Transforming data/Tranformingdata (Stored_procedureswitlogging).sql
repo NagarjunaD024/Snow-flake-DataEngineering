@@ -103,3 +103,12 @@ exception
 end;
 $$
 ;
+
+
+
+call LOAD_CUSTOMER_SUMMARY_ORDERS();
+
+-- query the summarized table
+select * 
+from SUMMARY_ORDERS 
+order by delivery_date desc;
