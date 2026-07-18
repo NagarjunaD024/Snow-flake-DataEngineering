@@ -33,3 +33,11 @@ create stage PARK_INN_STAGE
   storage_integration = PARK_INN_INTEGRATION
   url = 's3://parkinnorders8977/'
   file_format = (type = json);
+
+
+  -- view files in the external stage
+list @PARK_INN_STAGE;
+
+-- view data in the staged file
+select $1 from @PARK_INN_STAGE;
+
