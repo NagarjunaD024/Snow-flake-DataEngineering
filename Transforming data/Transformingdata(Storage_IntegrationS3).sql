@@ -101,5 +101,23 @@ lateral flatten (input => customer_orders:"Orders") CO,
 lateral flatten (input => CO.value:"Orders by day") DO;
 
 
+-- create a view to represent a relational staging table using the previous query
+
+use database BAKERY_DB;
+use schema EXTERNAL_JSON_ORDERS;
+create view ORDERS_PARK_INN_STG as
+select 
+  customer_orders:"Customer"::varchar as customer, 
+  customer_orders:"Order date"::date as order_date, 
+  CO.value:"Delivery date"::date as delivery_date,
+  DO.value:"Baked good type":: varchar as baked_good_type,
+  DO.value:"Quantity"::number as quantity,
+  source_file_name,
+  load_ts
+from ORDERS_PARK_INN_RAW_STG,
+lateral flatten (input => customer_orders:"Orders") CO,
+lateral flatten (input => CO.value:"Orders by day") DO;
+
+
 
 
