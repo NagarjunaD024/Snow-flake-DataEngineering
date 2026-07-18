@@ -49,3 +49,28 @@ when not matched then
 ;
 
 
+-- create a stored procedure that executes the previous MERGE statement
+use database BAKERY_DB;
+use schema TRANSFORM;
+create or replace procedure LOAD_CUSTOMER_ORDERS()
+returns varchar
+language sql
+as
+$$
+begin
+  merge into CUSTOMER_ORDERS_COMBINED tgt
+using ORDERS_COMBINED_STG as src
+on src.customer = tgt.customer and src.delivery_date = tgt.delivery_date and src.baked_good_type = tgt.baked_good_type
+when matched then 
+  update set tgt.quantity = src.quantity, 
+    tgt.source_file_name = src.source_file_name, 
+    tgt.load_ts = current_timestamp()
+when not matched then
+  insert (customer, order_date, delivery_date, 
+    baked_good_type, quantity, source_file_name, load_ts)
+  values(src.customer, src.order_date, src.delivery_date,
+    src.baked_good_type, src.quantity, src.source_file_name,
+    current_timestamp());
+end;
+$$
+;
