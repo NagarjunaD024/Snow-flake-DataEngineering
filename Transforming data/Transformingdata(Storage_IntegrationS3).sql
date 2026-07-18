@@ -51,3 +51,18 @@ create table ORDERS_PARK_INN_RAW_STG (
   load_ts timestamp
 );
 
+
+-- load data from the stage into the staging table
+copy into ORDERS_PARK_INN_RAW_STG
+from (
+  select 
+    $1, 
+    metadata$filename, 
+    current_timestamp() 
+  from @PARK_INN_STAGE
+)
+on_error = abort_statement
+;
+
+
+
