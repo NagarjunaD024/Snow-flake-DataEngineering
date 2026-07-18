@@ -70,3 +70,11 @@ select *
 from ORDERS_PARK_INN_RAW_STG;
 
 
+-- select the values from the first level keys
+select 
+  customer_orders:"Customer"::varchar as customer, 
+  customer_orders:"Order date"::date as order_date, 
+  customer_orders:"Orders"
+from ORDERS_PARK_INN_RAW_STG;
+
+
