@@ -70,3 +70,12 @@ create table SUMMARY_ORDERS (
   baked_good_type varchar,
   total_quantity number
 );
+
+
+
+-- insert data into the summarized table (truncate the table first to avoid data duplication)
+truncate table SUMMARY_ORDERS;
+insert into SUMMARY_ORDERS(delivery_date, baked_good_type, total_quantity)
+  select delivery_date, baked_good_type, sum(quantity) as total_quantity
+  from CUSTOMER_ORDERS_COMBINED
+  group by all;
