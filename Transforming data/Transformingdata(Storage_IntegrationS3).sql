@@ -27,3 +27,9 @@ create database if not exists BAKERY_DB;
 use database BAKERY_DB;
 create schema EXTERNAL_JSON_ORDERS;
 use schema EXTERNAL_JSON_ORDERS;
+
+-- create an external stage using the storage integration
+create stage PARK_INN_STAGE
+  storage_integration = PARK_INN_INTEGRATION
+  url = 's3://parkinnorders8977/'
+  file_format = (type = json);
