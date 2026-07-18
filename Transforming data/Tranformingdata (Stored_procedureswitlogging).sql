@@ -79,3 +79,27 @@ insert into SUMMARY_ORDERS(delivery_date, baked_good_type, total_quantity)
   select delivery_date, baked_good_type, sum(quantity) as total_quantity
   from CUSTOMER_ORDERS_COMBINED
   group by all;
+
+
+
+  -- create a stored procedure that encapsulates the TRUNCATE and INSERT statements
+create or replace procedure LOAD_CUSTOMER_SUMMARY_ORDERS()
+returns varchar
+language sql
+as
+$$
+begin
+  SYSTEM$LOG_DEBUG('LOAD_CUSTOMER_SUMMARY_ORDERS begin ');
+  
+  truncate table SUMMARY_ORDERS;
+  insert into SUMMARY_ORDERS(delivery_date, baked_good_type, total_quantity)
+  select delivery_date, baked_good_type, sum(quantity) as total_quantity
+  from CUSTOMER_ORDERS_COMBINED
+  group by all;
+  return 'Load completed. ' || SQLROWCOUNT || ' rows inserted.';
+exception
+  when other then
+    return 'Load failed with error message: ' || SQLERRM;
+end;
+$$
+;
