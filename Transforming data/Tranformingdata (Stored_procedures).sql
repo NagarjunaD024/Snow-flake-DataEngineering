@@ -74,3 +74,7 @@ when not matched then
 end;
 $$
 ;
+
+
+-- execute the stored procedure
+call LOAD_CUSTOMER_ORDERS();
