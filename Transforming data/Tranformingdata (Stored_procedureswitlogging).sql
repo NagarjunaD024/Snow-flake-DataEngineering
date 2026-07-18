@@ -12,3 +12,8 @@ use role ACCOUNTADMIN;
 alter account set event_table = BAKERY_DB.TRANSFORM.BAKERY_EVENTS;
 -- grant privileges to set log level to the SYSADMIN role
 grant modify log level on account to role SYSADMIN;
+
+
+use role SYSADMIN;
+-- set the log level on the stored procedure to DEBUG
+alter procedure LOAD_CUSTOMER_ORDERS() set log_level = DEBUG;
