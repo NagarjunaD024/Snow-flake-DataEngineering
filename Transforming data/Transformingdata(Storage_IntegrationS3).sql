@@ -119,5 +119,10 @@ lateral flatten (input => customer_orders:"Orders") CO,
 lateral flatten (input => CO.value:"Orders by day") DO;
 
 
+-- view data in the view
+select *
+from ORDERS_PARK_INN_STG;
+
+
 
 
