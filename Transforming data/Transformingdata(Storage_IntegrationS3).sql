@@ -65,4 +65,8 @@ on_error = abort_statement
 ;
 
 
+-- view data in the staging table
+select * 
+from ORDERS_PARK_INN_RAW_STG;
+
 
