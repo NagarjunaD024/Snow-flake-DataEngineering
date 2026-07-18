@@ -53,3 +53,9 @@ $$
 
 -- execute the stored procedure
 call LOAD_CUSTOMER_ORDERS();
+
+
+-- after waiting a few minutes, select data from the event table
+select * 
+from bakery_events 
+order by timestamp desc;
