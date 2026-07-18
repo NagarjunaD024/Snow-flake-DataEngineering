@@ -59,3 +59,14 @@ call LOAD_CUSTOMER_ORDERS();
 select * 
 from bakery_events 
 order by timestamp desc;
+
+
+
+-- create summarized table
+use database BAKERY_DB;
+use schema TRANSFORM;
+create table SUMMARY_ORDERS (
+  delivery_date date,
+  baked_good_type varchar,
+  total_quantity number
+);
