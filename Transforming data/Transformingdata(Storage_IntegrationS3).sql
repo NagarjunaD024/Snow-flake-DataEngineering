@@ -41,3 +41,13 @@ list @PARK_INN_STAGE;
 -- view data in the staged file
 select $1 from @PARK_INN_STAGE;
 
+
+-- create staging table for restaurant orders in raw (json) format
+use database BAKERY_DB;
+use schema EXTERNAL_JSON_ORDERS;
+create table ORDERS_PARK_INN_RAW_STG (
+  customer_orders variant,
+  source_file_name varchar,
+  load_ts timestamp
+);
+
