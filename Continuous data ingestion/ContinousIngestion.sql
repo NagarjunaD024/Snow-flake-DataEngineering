@@ -91,3 +91,25 @@ describe notification integration SPEEDY_QUEUE_INTEGRATION;
 
 -- grant usage on notification integration so that the SYSADMIN role can use it
 grant usage on integration SPEEDY_QUEUE_INTEGRATION to role SYSADMIN;
+
+
+
+-- create the snowpipe
+use role SYSADMIN;
+use database BAKERY_DB;
+use schema DELIVERY_ORDERS;
+
+create pipe SPEEDY_PIPE
+  auto_ingest = true
+  integration = 'SPEEDY_QUEUE_INTEGRATION'
+  as
+  copy into SPEEDY_ORDERS_RAW_STG
+  from (
+    select 
+      $1:"Order id",
+      $1:"Order datetime",
+      $1:"Items",
+      metadata$filename, 
+      current_timestamp() 
+    from @SPEEDY_STAGE
+  );
