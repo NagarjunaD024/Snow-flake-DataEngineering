@@ -55,3 +55,13 @@ select
   current_timestamp() 
 from @SPEEDY_STAGE;
 
+
+-- create staging table for delivery orders
+create table SPEEDY_ORDERS_RAW_STG (
+  order_id varchar,
+  order_datetime timestamp,
+  items variant,
+  source_file_name varchar,
+  load_ts timestamp
+);
+
