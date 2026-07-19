@@ -20,3 +20,13 @@ describe integration SPEEDY_INTEGRATION;
 
 -- grant usage on storage integration so that the SYSADMIN role can use it
 grant usage on integration SPEEDY_INTEGRATION to role SYSADMIN;
+
+
+-- create a new schema 
+use role SYSADMIN;
+create warehouse if not exists BAKERY_WH with warehouse_size = 'XSMALL';
+create database if not exists BAKERY_DB;
+use database BAKERY_DB;
+create schema DELIVERY_ORDERS;
+use schema DELIVERY_ORDERS;
+
