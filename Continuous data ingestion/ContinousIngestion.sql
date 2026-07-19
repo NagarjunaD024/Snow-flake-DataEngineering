@@ -37,3 +37,10 @@ create stage SPEEDY_STAGE
   url = 'azure://bakeryorders897764.blob.core.windows.net/speedyservicefiles8977/'
   file_format = (type = json);
 
+
+-- view files in the external stage
+list @SPEEDY_STAGE;
+
+-- view data in the staged files
+select $1 from @SPEEDY_STAGE;
+
