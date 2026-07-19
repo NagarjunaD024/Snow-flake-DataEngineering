@@ -113,3 +113,8 @@ create pipe SPEEDY_PIPE
       current_timestamp() 
     from @SPEEDY_STAGE
   );
+
+
+
+-- load historical data from files that existed in the external stage before Event Grid messages were configured
+alter pipe SPEEDY_PIPE refresh;
