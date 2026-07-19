@@ -146,3 +146,19 @@ select
   value:"Quantity"::number as quantity
 from SPEEDY_ORDERS_RAW_STG,
 lateral flatten (input => items);
+
+
+-- create a dynamic table that materializes the output of the previous query
+create dynamic table SPEEDY_ORDERS
+  target_lag = '1 minute'
+  warehouse = BAKERY_WH
+  as 
+  select
+  order_id,
+  order_datetime,
+  value:"Item"::varchar as baked_good_type,
+  value:"Quantity"::number as quantity,
+  source_file_name,
+  load_ts
+from SPEEDY_ORDERS_RAW_STG,
+lateral flatten (input => items);
