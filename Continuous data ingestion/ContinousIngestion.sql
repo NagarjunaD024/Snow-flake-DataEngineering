@@ -135,3 +135,14 @@ select *
 from table(information_schema.copy_history(
   table_name => 'SPEEDY_ORDERS_RAW_STG', 
   start_time => dateadd(hours, -1, current_timestamp())));
+
+
+
+-- select the values from the second level keys
+select
+  order_id,
+  order_datetime,
+  value:"Item"::varchar as baked_good_type,
+  value:"Quantity"::number as quantity
+from SPEEDY_ORDERS_RAW_STG,
+lateral flatten (input => items);
