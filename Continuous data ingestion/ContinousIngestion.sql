@@ -65,3 +65,19 @@ create table SPEEDY_ORDERS_RAW_STG (
   load_ts timestamp
 );
 
+
+
+-- configure event grid messages for blob storage events
+-- - enable the event grid resource provider
+-- - create a storage queue and take note of the queue URL
+-- - create an event grid subscription with an event grid system topic for the "Blob Created" event
+
+
+-- create a notification integration
+use role ACCOUNTADMIN;
+CREATE NOTIFICATION INTEGRATION SPEEDY_QUEUE_INTEGRATION
+ENABLED = true
+TYPE = QUEUE
+NOTIFICATION_PROVIDER = AZURE_STORAGE_QUEUE
+AZURE_STORAGE_QUEUE_PRIMARY_URI = 'https://bakeryorders897764.queue.core.windows.net/speedyordersqueue'
+AZURE_TENANT_ID = '5f3419cf-49eb-4713-9edb-8a3c39a7989c';
