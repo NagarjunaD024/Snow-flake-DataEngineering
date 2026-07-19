@@ -127,3 +127,11 @@ from SPEEDY_ORDERS_RAW_STG;
 
 -- check the status of the pipe
 select system$pipe_status('SPEEDY_PIPE');
+
+
+
+-- view the copy history in the last hour
+select *
+from table(information_schema.copy_history(
+  table_name => 'SPEEDY_ORDERS_RAW_STG', 
+  start_time => dateadd(hours, -1, current_timestamp())));
