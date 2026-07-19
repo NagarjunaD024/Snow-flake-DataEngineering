@@ -118,3 +118,12 @@ create pipe SPEEDY_PIPE
 
 -- load historical data from files that existed in the external stage before Event Grid messages were configured
 alter pipe SPEEDY_PIPE refresh;
+
+
+
+-- view data in the staging table
+select * 
+from SPEEDY_ORDERS_RAW_STG;
+
+-- check the status of the pipe
+select system$pipe_status('SPEEDY_PIPE');
