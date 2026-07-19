@@ -30,3 +30,10 @@ use database BAKERY_DB;
 create schema DELIVERY_ORDERS;
 use schema DELIVERY_ORDERS;
 
+
+-- create an external stage using the storage integration
+create stage SPEEDY_STAGE
+  storage_integration = SPEEDY_INTEGRATION
+  url = 'azure://bakeryorders897764.blob.core.windows.net/speedyservicefiles8977/'
+  file_format = (type = json);
+
