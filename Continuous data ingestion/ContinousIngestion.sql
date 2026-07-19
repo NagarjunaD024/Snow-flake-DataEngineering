@@ -44,3 +44,14 @@ list @SPEEDY_STAGE;
 -- view data in the staged files
 select $1 from @SPEEDY_STAGE;
 
+
+
+-- extract the ORDER_ID and ORDER_DATETIME columns from the JSON, but leave ITEMS as variant without parsing
+select 
+  $1:"Order id",
+  $1:"Order datetime",
+  $1:"Items",
+  metadata$filename, 
+  current_timestamp() 
+from @SPEEDY_STAGE;
+
