@@ -81,3 +81,13 @@ TYPE = QUEUE
 NOTIFICATION_PROVIDER = AZURE_STORAGE_QUEUE
 AZURE_STORAGE_QUEUE_PRIMARY_URI = 'https://bakeryorders897764.queue.core.windows.net/speedyordersqueue'
 AZURE_TENANT_ID = '5f3419cf-49eb-4713-9edb-8a3c39a7989c';
+
+
+
+-- describe the storage integration and take note of the following parameters:
+-- - AZURE_CONSENT_URL
+-- - AZURE_MULTI_TENANT_APP_NAME
+describe notification integration SPEEDY_QUEUE_INTEGRATION;
+
+-- grant usage on notification integration so that the SYSADMIN role can use it
+grant usage on integration SPEEDY_QUEUE_INTEGRATION to role SYSADMIN;
