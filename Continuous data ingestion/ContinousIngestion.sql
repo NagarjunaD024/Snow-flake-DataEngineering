@@ -162,3 +162,15 @@ create dynamic table SPEEDY_ORDERS
   load_ts
 from SPEEDY_ORDERS_RAW_STG,
 lateral flatten (input => items);
+
+
+
+-- query the data in the dynamic table
+select *
+from SPEEDY_ORDERS
+order by order_datetime desc;
+
+-- query the dynamic table refresh history
+select *
+from table(information_schema.dynamic_table_refresh_history())
+order by refresh_start_time desc;
