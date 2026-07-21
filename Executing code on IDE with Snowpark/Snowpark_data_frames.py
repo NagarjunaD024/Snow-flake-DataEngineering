@@ -31,3 +31,5 @@ df_dim_date = my_session.table("DIM_DATE")
 # join the data frames
 df_orders_with_holiday_flg = df_orders.join(df_dim_date, df_orders.delivery_date == df_dim_date.day, 'left')
 
+# create a view from the joined data frames
+df_orders_with_holiday_flg.create_or_replace_view("ORDERS_HOLIDAY_FLG")
