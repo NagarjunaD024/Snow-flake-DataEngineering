@@ -26,3 +26,10 @@ def is_holiday(session: snowpark.Session, p_date, p_country):
     else:
         return False
 ';
+
+-- execute the procedure using different values for the p_date and p_country parameters
+call PROC_IS_HOLIDAY('2024-01-01', 'US'); -- returns True
+call PROC_IS_HOLIDAY('2024-07-04', 'US'); -- returns True
+call PROC_IS_HOLIDAY('2024-07-14', 'US'); -- returns False
+call PROC_IS_HOLIDAY('2024-07-14', 'FR'); -- returns TRTrueUE
+call PROC_IS_HOLIDAY('2024-07-04', 'FR'); -- returns False
