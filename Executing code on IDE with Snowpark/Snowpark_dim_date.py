@@ -20,3 +20,14 @@ def is_holiday(p_date, p_country):
         return True
     else:
         return False
+
+
+# define the start date
+start_dt = date(2023, 1, 1)
+# define number of days
+# use the value 5 to generate a sample dimension with 5 days
+no_days = 5 
+# change the value to 731 to generate dates for 731 days (years 2023 and 2024)
+#no_days = 731
+# store consecutive dates starting from the start date in a list
+dates = [(start_dt + timedelta(days=i)).isoformat() for i in range(no_days)]
