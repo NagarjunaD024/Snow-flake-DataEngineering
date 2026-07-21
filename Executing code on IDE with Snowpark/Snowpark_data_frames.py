@@ -21,3 +21,9 @@ connection_parameters_dict = {
 
 # create a session object for the Snowpark session
 my_session = Session.builder.configs(connection_parameters_dict).create()
+
+
+# retrieve tables into data frames
+df_orders = my_session.table("ORDERS_STG")
+df_dim_date = my_session.table("DIM_DATE")
+
