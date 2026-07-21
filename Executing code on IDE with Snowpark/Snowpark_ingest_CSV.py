@@ -50,5 +50,9 @@ result = df.copy_into_table("ORDERS_STG",
   format_type_options = {"skip_header": 1})
 
 
+  # close the Snowpark session
+my_session.close()
+
+
 
 
