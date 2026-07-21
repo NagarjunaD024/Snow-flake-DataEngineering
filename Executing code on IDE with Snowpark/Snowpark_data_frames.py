@@ -33,3 +33,7 @@ df_orders_with_holiday_flg = df_orders.join(df_dim_date, df_orders.delivery_date
 
 # create a view from the joined data frames
 df_orders_with_holiday_flg.create_or_replace_view("ORDERS_HOLIDAY_FLG")
+
+
+# close the Snowpark session
+my_session.close()
