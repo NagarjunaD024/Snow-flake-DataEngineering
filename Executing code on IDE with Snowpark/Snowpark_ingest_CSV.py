@@ -29,4 +29,12 @@ connection_parameters_dict = {
 my_session = Session.builder.configs(connection_parameters_dict).create()
 
 
+# put the file into the stage
+result = my_session.file.put(source_file_name, "@orders_stage")
+print(result)
+
+
+
+
+
 
