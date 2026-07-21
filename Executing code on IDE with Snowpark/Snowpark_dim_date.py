@@ -74,7 +74,7 @@ df = my_session.create_dataframe(
 # print the data frame to verify that it contains the correct data
 # print(df.collect())
 
-#Listing 6.10
+
 # save the data frame to a Snowflake table named DIM_DATE and overwrite the table if it already exists
 df.write.mode("overwrite").save_as_table("DIM_DATE")
 

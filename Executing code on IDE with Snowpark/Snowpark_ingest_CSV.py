@@ -34,6 +34,16 @@ result = my_session.file.put(source_file_name, "@orders_stage")
 print(result)
 
 
+# define the schema for the csv file
+schema_for_csv = StructType(
+        [StructField("Customer", StringType()), 
+         StructField("Order_date", DateType()),
+         StructField("Delivery_date", DateType()),
+         StructField("Baked_good_type", StringType()),
+         StructField("Quantity", DecimalType())
+        ])
+
+
 
 
 
