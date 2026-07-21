@@ -27,3 +27,7 @@ my_session = Session.builder.configs(connection_parameters_dict).create()
 df_orders = my_session.table("ORDERS_STG")
 df_dim_date = my_session.table("DIM_DATE")
 
+
+# join the data frames
+df_orders_with_holiday_flg = df_orders.join(df_dim_date, df_orders.delivery_date == df_dim_date.day, 'left')
+
