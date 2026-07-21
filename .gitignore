@@ -1,0 +1,3 @@
+# Snowflake credentials — never commit
+connection_parameters.json
+**/connection_parameters.json
