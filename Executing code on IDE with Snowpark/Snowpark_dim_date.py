@@ -31,3 +31,10 @@ no_days = 5
 #no_days = 731
 # store consecutive dates starting from the start date in a list
 dates = [(start_dt + timedelta(days=i)).isoformat() for i in range(no_days)]
+
+
+# create a list of lists that combines the list of dates with the output of the is_holiday() function
+holiday_flags = [[d, is_holiday(d, 'US')] for d in dates]
+
+# print the holiday_flags list of lists locally to check that the data is as expected
+print(holiday_flags)
