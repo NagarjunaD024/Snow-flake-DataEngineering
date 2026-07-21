@@ -43,7 +43,11 @@ schema_for_csv = StructType(
          StructField("Quantity", DecimalType())
         ])
 
-
+# COPY data from the CSV file to the staging table 
+# using the session.read method
+df = my_session.read.schema(schema_for_csv).csv("@orders_stage")
+result = df.copy_into_table("ORDERS_STG", 
+  format_type_options = {"skip_header": 1})
 
 
 
