@@ -11,3 +11,12 @@ from datetime import date, timedelta
 # import the holidays package to determine whether a given date is a holiday
 import holidays
 
+# define a function that returns True if p_date is a holiday in p_country
+def is_holiday(p_date, p_country):
+    # get a list of all holidays in p_country
+    all_holidays = holidays.country_holidays(p_country)
+    # return True if p_date is a holiday, otherwise return false
+    if p_date in all_holidays:
+        return True
+    else:
+        return False
