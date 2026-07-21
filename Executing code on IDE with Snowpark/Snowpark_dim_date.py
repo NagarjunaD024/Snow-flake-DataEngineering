@@ -58,3 +58,25 @@ connection_parameters_dict = {
 
 # create a session object for the Snowpark session
 my_session = Session.builder.configs(connection_parameters_dict).create()
+
+
+
+# create a data frame from the holiday_flags list of lists and define the schema as two columns:
+# - column named "day" with data type DateType
+# - column named "holiday_flg" with data type BooleanType
+df = my_session.create_dataframe(
+    holiday_flags, 
+    schema = StructType(
+        [StructField("day", DateType()), 
+         StructField("holiday_flg", BooleanType())])
+    )
+
+# print the data frame to verify that it contains the correct data
+print(df.collect())
+
+#Listing 6.10
+# save the data frame to a Snowflake table named DIM_DATE and overwrite the table if it already exists
+df.write.mode("overwrite").save_as_table("DIM_DATE")
+
+# close the Snowpark session
+my_session.close()
