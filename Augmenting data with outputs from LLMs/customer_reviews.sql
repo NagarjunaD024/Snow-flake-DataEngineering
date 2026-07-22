@@ -80,3 +80,16 @@ create table CUSTOMER_REVIEWS (
   time_created timestamp,
   customer_review varchar
 );
+
+
+
+-- insert the result of the previous query into the table
+insert into CUSTOMER_REVIEWS
+select
+    value:author_details.rating::number         as rating,
+    value:created_at::timestamp                 as time_created,
+    regexp_replace(value:content::varchar,
+        '[^a-zA-Z0-9 .,!?-]+', ' ')::varchar    as customer_review
+from table(flatten(
+    input => GET_MOVIE_REVIEWS('687163'):results   
+));
