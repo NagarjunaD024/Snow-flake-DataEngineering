@@ -21,3 +21,10 @@ create network rule TMDB_API_NETWORK_RULE
   mode = EGRESS
   type = HOST_PORT
   value_list = ('api.themoviedb.org');
+
+-- create a secret
+create secret TMDB_API_TOKEN
+type = GENERIC_STRING
+secret_string = 'eyJhbGciOiJ..TVBMk';
+
+
