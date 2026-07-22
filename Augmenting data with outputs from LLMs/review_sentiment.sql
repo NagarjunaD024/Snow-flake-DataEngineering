@@ -16,3 +16,17 @@ select SNOWFLAKE.CORTEX.SENTIMENT('The bagel was stale.');
 
 select SNOWFLAKE.CORTEX.SENTIMENT('I went to the bakery for lunch.');
 
+
+
+-- map the sentiment score to Positive, Negative, and Neutral
+select 
+  rating,
+  time_created,
+  customer_review,
+  SNOWFLAKE.CORTEX.SENTIMENT(customer_review) as sentiment_score,
+  case
+    when sentiment_score < -0.7 then 'Negative'
+    when sentiment_score < 0.4 then 'Neutral'
+    else 'Positive'
+  end as sentiment
+from CUSTOMER_REVIEWS;
