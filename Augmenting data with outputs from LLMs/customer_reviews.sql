@@ -15,3 +15,9 @@ grant create secret on schema REVIEWS to role SYSADMIN;
 grant create integration on account to role SYSADMIN;
 -- switch back to the SYSADMIN role
 use role SYSADMIN;
+
+-- create a network rule
+create network rule TMDB_API_NETWORK_RULE
+  mode = EGRESS
+  type = HOST_PORT
+  value_list = ('api.themoviedb.org');
