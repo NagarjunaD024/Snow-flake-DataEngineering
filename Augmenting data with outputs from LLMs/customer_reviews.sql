@@ -73,4 +73,10 @@ from table(flatten(
     input => GET_MOVIE_REVIEWS('687163'):results     
 ));
 
-
+-- create a table to store the customer reviews
+use schema REVIEWS;
+create table CUSTOMER_REVIEWS (
+  rating number,
+  time_created timestamp,
+  customer_review varchar
+);
