@@ -48,3 +48,16 @@ def get_order_info_from_email(session: snowpark.Session, email_content):
 $$;
 
 
+-- execute the stored procedure and provide a sample of an email content
+call READ_EMAIL_PROC(
+  'Hello, please deliver 6 loaves of white bread on Tuesday, September 5.
+  On Wednesday, September 6, we need 16 bagels. Thanks, Lilys Coffee');
+
+
+select * from COLLECTED_ORDERS_FROM_EMAIL;
+
+
+call READ_EMAIL_PROC (
+  'Hi again. At Metro Fine Foods, we are renewing our order for 
+  Thursday, September 7. We need 20 baguettes, 16 croissants, and 
+  a dozen blueberry muffins. Have a nice day!');
