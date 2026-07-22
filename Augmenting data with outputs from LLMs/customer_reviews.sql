@@ -28,3 +28,16 @@ type = GENERIC_STRING
 secret_string = 'eyJhbGciOiJ..TVBMk';
 
 
+-- grant usage on the secret to a custom role if that role will be using the secret 
+grant read on secret TMDB_API_TOKEN to role <custom_role>;
+
+
+create external access integration TMDB_API_INTEGRATION
+  allowed_network_rules = (TMDB_API_NETWORK_RULE)
+  allowed_authentication_secrets = (TMDB_API_TOKEN)
+  enabled = TRUE;
+
+
+
+
+
