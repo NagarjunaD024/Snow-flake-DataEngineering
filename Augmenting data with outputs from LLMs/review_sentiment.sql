@@ -7,3 +7,12 @@ grant database role SNOWFLAKE.CORTEX_USER to role SYSADMIN;
 use role SYSADMIN;
 use database BAKERY_DB;
 use schema REVIEWS;
+
+
+-- get the sentiment score from different examples of text
+select SNOWFLAKE.CORTEX.SENTIMENT('The service was excellent!');
+
+select SNOWFLAKE.CORTEX.SENTIMENT('The bagel was stale.');
+
+select SNOWFLAKE.CORTEX.SENTIMENT('I went to the bakery for lunch.');
+
