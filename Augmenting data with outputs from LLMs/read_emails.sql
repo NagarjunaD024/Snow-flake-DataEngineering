@@ -61,3 +61,11 @@ call READ_EMAIL_PROC (
   'Hi again. At Metro Fine Foods, we are renewing our order for 
   Thursday, September 7. We need 20 baguettes, 16 croissants, and 
   a dozen blueberry muffins. Have a nice day!');
+
+
+-- a few more sample email contents to test the stored procedure
+call READ_EMAIL_PROC('Hi again. At Metro Fine Foods, we are renewing our order for Thursday, September 7. We need 20 baguettes, 16 croissants, and a dozen blueberry muffins. Have a nice day!');
+
+call READ_EMAIL_PROC('Greetings! We loved your French bread last week. Please deliver 10 more tomorrow. Cheers from your friends at Page One Fast Food');
+
+call READ_EMAIL_PROC('Do you deliver pizza? If so, send two this afternoon. If not, then some bagels should do. Best, Jimmys Diner');
