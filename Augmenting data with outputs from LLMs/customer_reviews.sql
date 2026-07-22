@@ -63,6 +63,14 @@ def get_reviews(movie_id):
 $$;
 
 
-
+-- select from the UDF
+select
+    value:author::varchar                       as author,
+    value:author_details.rating::number         as rating,
+    value:created_at::timestamp                 as time_created,
+    value:content::varchar                      as customer_review
+from table(flatten(
+    input => GET_MOVIE_REVIEWS('687163'):results     
+));
 
 
