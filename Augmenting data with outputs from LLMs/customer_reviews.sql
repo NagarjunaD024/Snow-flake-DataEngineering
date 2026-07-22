@@ -5,3 +5,13 @@ create database if not exists BAKERY_DB;
 use database BAKERY_DB;
 create schema REVIEWS;
 use schema REVIEWS;
+
+
+-- use role ACCOUNTADMIN to grant privilege
+use role ACCOUNTADMIN;
+-- grant CREATE_NETWORK RULE, CREATE SECRET, and CREATE INTEGRATION privileges to role SYSADMIN
+grant create network rule on schema REVIEWS to role SYSADMIN;
+grant create secret on schema REVIEWS to role SYSADMIN;
+grant create integration on account to role SYSADMIN;
+-- switch back to the SYSADMIN role
+use role SYSADMIN;
