@@ -38,6 +38,31 @@ create external access integration TMDB_API_INTEGRATION
   enabled = TRUE;
 
 
+-- Create UDF GET_MOVIE_REVIEWS
+use role SYSADMIN;
+create or replace function GET_MOVIE_REVIEWS(movie_id varchar)
+returns variant
+language python
+runtime_version = 3.10
+handler = 'get_reviews'
+external_access_integrations = (TMDB_API_INTEGRATION)
+secrets = ('tmdb_api_token' = TMDB_API_TOKEN)
+packages = ('requests')
+as
+$$
+import _snowflake
+import requests
+def get_reviews(movie_id):
+    api_token = _snowflake.get_generic_secret_string('tmdb_api_token')
+    url = f'https://api.themoviedb.org/3/movie/{movie_id}/reviews'
+    response = requests.get(
+        url=url,
+        headers={'Authorization': 'Bearer ' + api_token, 'accept': 'application/json'}
+    )
+    return response.json()
+$$;
+
+
 
 
 
