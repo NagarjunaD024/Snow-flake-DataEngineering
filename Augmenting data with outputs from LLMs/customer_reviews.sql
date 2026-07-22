@@ -93,3 +93,7 @@ select
 from table(flatten(
     input => GET_MOVIE_REVIEWS('687163'):results   
 ));
+
+
+-- select data from the table
+select * from CUSTOMER_REVIEWS;
