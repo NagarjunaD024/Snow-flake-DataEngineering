@@ -80,3 +80,15 @@ select SYSTEM$CLUSTERING_INFORMATION('retailer_sales', '(store_id)');
 -- add a clustering key
 alter table RETAILER_SALES cluster by (store_id);
 
+
+-- monitor the clustering process
+-- grant privilege first
+use role ACCOUNTADMIN;
+grant MONITOR USAGE ON ACCOUNT to role SYSADMIN;
+use role SYSADMIN;
+select *
+  from table(information_schema.automatic_clustering_history(
+  date_range_start=>dateadd(D, -1, current_date),
+  table_name=>'BAKERY_DB.RETAIL_ANALYSIS.RETAILER_SALES'));
+
+
