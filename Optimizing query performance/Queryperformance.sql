@@ -20,3 +20,22 @@ select distinct
   )/1000 as distance_km
 from HARMONIZED_RETAILER_DIM_STORE
 limit 5;
+
+
+-- create a new schema in the BAKERY_DB database
+use database BAKERY_DB;
+create schema RETAIL_ANALYSIS;
+use schema RETAIL_ANALYSIS;
+
+
+
+-- create a table by selecting all columns from HARMONIZED_RETAIL_SALES from the shared database
+create table RETAILER_SALES as 
+select *, 
+  TO_GEOGRAPHY(
+    'Point('||store_longitude||' '||store_latitude||')'
+  ) as store_loc_geo,
+  ST_DISTANCE(
+    TO_GEOGRAPHY('Point(-84.19 39.76)'), store_loc_geo
+  )/1000 as distance_km
+from AI_BLUEPRINT_FOR_CPG__ONSHELF_AVAILABILITY.PUBLIC.HARMONIZED_RETAILER_DIM_STORE;
