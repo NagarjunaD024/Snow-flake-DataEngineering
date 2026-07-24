@@ -39,3 +39,13 @@ select *,
     TO_GEOGRAPHY('Point(-84.19 39.76)'), store_loc_geo
   )/1000 as distance_km
 from AI_BLUEPRINT_FOR_CPG__ONSHELF_AVAILABILITY.PUBLIC.HARMONIZED_RETAILER_DIM_STORE;
+
+
+
+-- select top 100 stores that are closest to the bakery's location
+select distinct 
+  store_id, 
+  distance_km
+from RETAILER_SALES
+order by distance_km
+limit 100;
