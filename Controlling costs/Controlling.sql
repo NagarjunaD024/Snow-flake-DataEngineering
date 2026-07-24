@@ -36,3 +36,11 @@ where store_id in (
 group by store_id, distance_km, product_id
 order by distance_km;
 
+
+-- use the extra small warehouse
+use warehouse BAKERY_WH_XSMALL;
+
+
+-- set the session so that it doesn't reuse query results - for testing only
+alter session set use_cached_result = FALSE;
+
