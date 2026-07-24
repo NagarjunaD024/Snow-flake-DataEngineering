@@ -114,3 +114,7 @@ where product_id = 101
 group by store_id;
 
 
+-- add search optimization
+alter table RETAILER_SALES add search optimization on equality(product_id);
+
+
