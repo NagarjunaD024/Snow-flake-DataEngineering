@@ -82,3 +82,11 @@ alter warehouse BAKERY_WH_XSMALL set AUTO_SUSPEND = 300;
 
 
 
+-- grant the USAGE_VIEWER database role to SYSADMIN
+use role ACCOUNTADMIN;
+grant database role SNOWFLAKE.USAGE_VIEWER to role SYSADMIN;
+use role SYSADMIN;
+
+
+
+
