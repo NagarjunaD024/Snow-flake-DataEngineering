@@ -88,5 +88,17 @@ grant database role SNOWFLAKE.USAGE_VIEWER to role SYSADMIN;
 use role SYSADMIN;
 
 
+-- summarize the queuing time and the total execution time by each warehouse by day for the past 7 days 
+select 
+  to_date(start_time) as start_date, 
+  warehouse_name, 
+  sum(avg_running) as total_running, 
+  sum(avg_queued_load) as total_queued
+from SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_LOAD_HISTORY
+where TO_DATE(start_time) > DATEADD(day,-7,TO_DATE(CURRENT_TIMESTAMP()))
+group by all
+order by 1, 2;
+
+
 
 
