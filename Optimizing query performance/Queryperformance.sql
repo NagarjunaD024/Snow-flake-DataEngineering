@@ -49,3 +49,14 @@ select distinct
 from RETAILER_SALES
 order by distance_km
 limit 100;
+
+
+-- select each product sold in the chosen store and the total quantity sold
+-- Listing 8.1
+select 
+  product_id, 
+  sum(sales_quantity) as tot_quantity
+from RETAILER_SALES
+where store_id = 392366678147865718
+group by product_id;
+
