@@ -128,4 +128,17 @@ grant database role SNOWFLAKE.GOVERNANCE_VIEWER to role SYSADMIN;
 use role SYSADMIN;
 
 
+-- select the longest running queries from query history
+select 
+  query_id, 
+  query_text, 
+  partitions_scanned, 
+  partitions_total, 
+  total_elapsed_time
+from SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY
+where TO_DATE(start_time) > DATEADD(day,-1,TO_DATE(CURRENT_TIMESTAMP()))
+order by total_elapsed_time desc
+limit 50;
+
+
 
