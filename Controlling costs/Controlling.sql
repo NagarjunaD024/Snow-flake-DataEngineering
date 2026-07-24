@@ -44,3 +44,27 @@ use warehouse BAKERY_WH_XSMALL;
 -- set the session so that it doesn't reuse query results - for testing only
 alter session set use_cached_result = FALSE;
 
+
+
+-- add filter to the previous query to select only stores that within 1000 km
+
+select 
+  store_id, 
+  distance_km, 
+  product_id, 
+  sum(sales_quantity) as total_quantity
+from RETAILER_SALES
+where store_id in (
+  select store_id 
+  from (
+    select store_id, 
+      count(distinct product_id) as product_cnt
+    from RETAILER_SALES
+    where distance_km < 1000
+    group by store_id
+    having product_cnt > 100
+  )
+)
+group by store_id, distance_km, product_id
+order by distance_km;
+
