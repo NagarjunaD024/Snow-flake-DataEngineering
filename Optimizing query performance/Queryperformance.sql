@@ -60,3 +60,14 @@ from RETAILER_SALES
 where store_id = 392366678147865718
 group by product_id;
 
+-- count the rows in the entire table and the number of filtered rows
+select 
+  'Total rows' as filtering_type, 
+  count(*) as row_cnt 
+from retailer_sales
+union all
+select 
+  'Filtered rows' as filtering_type, 
+  count(*) as row_cnt 
+from retailer_sales 
+where store_id = 392366678147865718;
