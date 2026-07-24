@@ -72,3 +72,13 @@ order by distance_km;
 -- set the session parameter to its original value that allows reusing query results
 alter session set use_cached_result = TRUE;
 
+
+select count(*) from RETAILER_SALES;
+-- open the query profile after executing
+
+
+-- change the AUTO_SUSPEND parameter to 5 minutes (300 seconds)
+alter warehouse BAKERY_WH_XSMALL set AUTO_SUSPEND = 300;
+
+
+
