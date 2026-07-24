@@ -101,3 +101,7 @@ where store_id = 392366678147865718
 group by product_id;
 
 
+-- view the clustering information again
+select SYSTEM$CLUSTERING_INFORMATION('retailer_sales', '(store_id)');
+
+
