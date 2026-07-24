@@ -75,3 +75,8 @@ where store_id = 392366678147865718;
 
 -- view clustering information
 select SYSTEM$CLUSTERING_INFORMATION('retailer_sales', '(store_id)');
+
+
+-- add a clustering key
+alter table RETAILER_SALES cluster by (store_id);
+
