@@ -102,3 +102,5 @@ order by 1, 2;
 
 
 
+-- limit the number of concurrently running queries to 6
+alter warehouse BAKERY_WH_LARGE set MAX_CONCURRENCY_LEVEL = 6;
