@@ -122,4 +122,10 @@ alter table RETAILER_SALES add search optimization on equality(product_id);
 show tables like 'RETAILER_SALES';
 
 
+-- grant the GOVERNANCE_VIEWER database role to SYSADMIN
+use role ACCOUNTADMIN;
+grant database role SNOWFLAKE.GOVERNANCE_VIEWER to role SYSADMIN;
+use role SYSADMIN;
+
+
 
