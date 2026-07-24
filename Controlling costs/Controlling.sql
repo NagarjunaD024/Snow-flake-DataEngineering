@@ -12,3 +12,27 @@ create warehouse BAKERY_WH_MEDIUM with warehouse_size = 'medium';
 create warehouse BAKERY_WH_LARGE with warehouse_size = 'large';
 
 
+
+-- construct a complex query that 
+-- - selects the total sold quantity of each product in each store
+-- - adds a condition to include only stores which sell more than 100 distinct products
+-- - sorts the results by the distance
+select 
+  store_id, 
+  distance_km, 
+  product_id, 
+  sum(sales_quantity) as total_quantity
+from RETAILER_SALES
+where store_id in (
+  select store_id 
+  from (
+    select store_id, 
+      count(distinct product_id) as product_cnt
+    from RETAILER_SALES
+    group by store_id
+    having product_cnt > 100
+  )
+)
+group by store_id, distance_km, product_id
+order by distance_km;
+
