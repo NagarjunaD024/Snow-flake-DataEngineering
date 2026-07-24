@@ -118,3 +118,8 @@ group by store_id;
 alter table RETAILER_SALES add search optimization on equality(product_id);
 
 
+-- view the search optimization parameters
+show tables like 'RETAILER_SALES';
+
+
+
