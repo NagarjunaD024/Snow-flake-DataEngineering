@@ -92,3 +92,12 @@ select *
   table_name=>'BAKERY_DB.RETAIL_ANALYSIS.RETAILER_SALES'));
 
 
+  -- execute the query from Listing 8.1 again
+select 
+  product_id, 
+  sum(sales_quantity) as tot_quantity
+from RETAILER_SALES
+where store_id = 392366678147865718
+group by product_id;
+
+
