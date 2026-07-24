@@ -68,3 +68,7 @@ where store_id in (
 group by store_id, distance_km, product_id
 order by distance_km;
 
+
+-- set the session parameter to its original value that allows reusing query results
+alter session set use_cached_result = TRUE;
+
