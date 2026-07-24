@@ -4,3 +4,19 @@ use role ACCOUNTADMIN;
 
 -- grant usage on the database to the SYSADMIN role if you haven't granted it already when getting the data
 grant imported privileges on database AI_BLUEPRINT_FOR_CPG__ONSHELF_AVAILABILITY to role SYSADMIN;
+
+-- query that selects individual stores, converts their latitude and longitude into a geography data type
+-- and calculates the distance in kilometers from Dayton, Ohio
+-- results are limited to 5 rows for better performance while developing the query
+select distinct
+  store_id, 
+  store_latitude,
+  store_longitude, 
+  TO_GEOGRAPHY(
+    'Point('||store_longitude||' '||store_latitude||')'
+  ) as store_loc_geo,
+  ST_DISTANCE(
+    TO_GEOGRAPHY('Point(-84.19 39.76)'), store_loc_geo
+  )/1000 as distance_km
+from HARMONIZED_RETAILER_DIM_STORE
+limit 5;
