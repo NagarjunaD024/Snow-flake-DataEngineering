@@ -71,3 +71,7 @@ select
   count(*) as row_cnt 
 from retailer_sales 
 where store_id = 392366678147865718;
+
+
+-- view clustering information
+select SYSTEM$CLUSTERING_INFORMATION('retailer_sales', '(store_id)');
