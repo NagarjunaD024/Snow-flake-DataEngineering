@@ -98,5 +98,11 @@ insert into EMPLOYEE values
 (1004, 'Sandra Perkins', '55 Velo St.', 'Bread', '2022-05-01');
 
 
+-- use the DATA_ANALYST role to select from the table in the RAW schema
+use role DATA_ANALYST;
+select * from RAW.EMPLOYEE;
+-- should not succeed because the DATA_ANALYST has no privileges in the RAW schema
+
+
 
 
