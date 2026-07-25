@@ -62,3 +62,7 @@ returns boolean ->
 -- otherwise return FALSE
     else FALSE
   end;
+
+
+-- apply the row access policy to the EMPLOYEE view in the RPT schema
+alter view BAKERY_DB.RPT.EMPLOYEE add row access policy RAP_BUSINES_UNIT on (DEPARTMENT); 
