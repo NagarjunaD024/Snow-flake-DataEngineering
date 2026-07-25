@@ -112,5 +112,11 @@ select id, name, home_address, department, hire_date
 from RAW.EMPLOYEE;
 
 
+-- switch to the DATA_ANALYST role and select from the view in the RPT schema
+use role DATA_ANALYST;
+select * from RPT.EMPLOYEE;
+-- should return values
+
+
 
 
