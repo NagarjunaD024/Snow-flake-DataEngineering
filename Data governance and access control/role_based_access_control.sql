@@ -34,3 +34,11 @@ grant usage on all schemas in database BAKERY_DB to role BAKERY_FULL;
 grant all on schema BAKERY_DB.RAW to role BAKERY_FULL;
 grant all on schema BAKERY_DB.RPT to role BAKERY_FULL;
 
+
+-- grant read-only privileges on database BAKERY_DB to the BAKERY_READ role
+grant usage on database BAKERY_DB to role BAKERY_READ;
+grant usage on all schemas in database BAKERY_DB to role BAKERY_READ;
+grant select on all tables in schema BAKERY_DB.RPT to role BAKERY_READ;
+grant select on all views in schema BAKERY_DB.RPT to role BAKERY_READ;
+
+
