@@ -20,3 +20,7 @@ create role BAKERY_READ;
 -- create the functional roles
 create role DATA_ENGINEER;
 create role DATA_ANALYST;
+
+
+-- using the SECURITYADMIN role (because this role has the MANAGE GRANTS privilege)
+use role SECURITYADMIN;
