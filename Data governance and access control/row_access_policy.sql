@@ -66,3 +66,9 @@ returns boolean ->
 
 -- apply the row access policy to the EMPLOYEE view in the RPT schema
 alter view BAKERY_DB.RPT.EMPLOYEE add row access policy RAP_BUSINES_UNIT on (DEPARTMENT); 
+
+
+-- test to verify that the row access policy is working as expected
+-- the DATA_ANALYST_BREAD role should see only the data in the 'Bread' department
+use role DATA_ANALYST_BREAD;
+select * from BAKERY_DB.RPT.EMPLOYEE;
