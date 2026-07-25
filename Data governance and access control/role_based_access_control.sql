@@ -60,3 +60,12 @@ grant role DATA_ANALYST to role SYSADMIN;
 
 
 
+-- grant the functional roles to the users who perform those business functions
+-- in this exercise we grant both functional roles to our current user to be able to test them
+
+set my_current_user = current_user();
+grant role DATA_ENGINEER to user IDENTIFIER($my_current_user);
+grant role DATA_ANALYST to user IDENTIFIER($my_current_user);
+
+
+
