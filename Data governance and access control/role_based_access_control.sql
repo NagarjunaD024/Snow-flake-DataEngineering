@@ -47,4 +47,11 @@ grant select on future tables in schema BAKERY_DB.RPT to role BAKERY_READ;
 grant select on future views in schema BAKERY_DB.RPT to role BAKERY_READ;
 
 
+-- grant access roles to functional roles
+-- grant the BAKERY_FULL role to the DATA_ENGINEER role
+grant role BAKERY_FULL to role DATA_ENGINEER;
+-- grant the BAKERY_READ role to the DATA_ANALYST role
+grant role BAKERY_READ to role DATA_ANALYST;
+
+
 
