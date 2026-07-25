@@ -69,3 +69,10 @@ grant role DATA_ANALYST to user IDENTIFIER($my_current_user);
 
 
 
+-- grant usage on the BAKERY_WH warehouse to the functional roles
+grant usage on warehouse BAKERY_WH to role DATA_ENGINEER;
+grant usage on warehouse BAKERY_WH to role DATA_ANALYST;
+
+
+
+
