@@ -105,4 +105,12 @@ select * from RAW.EMPLOYEE;
 
 
 
+-- switch to the DATA_ENGINEER role and create a view in the RPT schema
+use role DATA_ENGINEER;
+create view RPT.EMPLOYEE as 
+select id, name, home_address, department, hire_date
+from RAW.EMPLOYEE;
+
+
+
 
