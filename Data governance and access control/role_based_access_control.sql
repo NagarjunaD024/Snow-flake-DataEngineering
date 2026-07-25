@@ -54,4 +54,9 @@ grant role BAKERY_FULL to role DATA_ENGINEER;
 grant role BAKERY_READ to role DATA_ANALYST;
 
 
+-- grant both functional roles to the SYSADMIN role
+grant role DATA_ENGINEER to role SYSADMIN;
+grant role DATA_ANALYST to role SYSADMIN;
+
+
 
