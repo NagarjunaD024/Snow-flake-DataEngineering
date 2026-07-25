@@ -24,3 +24,10 @@ grant role BAKERY_READ to role DATA_ANALYST_PASTRY;
 set my_current_user = current_user();
 grant role DATA_ANALYST_BREAD to user IDENTIFIER($my_current_user);
 grant role DATA_ANALYST_PASTRY to user IDENTIFIER($my_current_user);
+
+
+
+-- grant usage on the BAKERY_WH warehouse to the functional roles
+use role SYSADMIN;
+grant usage on warehouse BAKERY_WH to role DATA_ANALYST_BREAD;
+grant usage on warehouse BAKERY_WH to role DATA_ANALYST_PASTRY;
