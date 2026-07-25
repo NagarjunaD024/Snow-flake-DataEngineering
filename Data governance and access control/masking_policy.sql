@@ -32,3 +32,9 @@ set masking policy ADDRESS_MASK;
 -- should return masked data
 use role DATA_ANALYST_BREAD;
 select * from BAKERY_DB.RPT.EMPLOYEE;
+
+
+-- then use the DATA_ENGINEER role
+-- should return unmasked data
+use role DATA_ENGINEER;
+select * from BAKERY_DB.RPT.EMPLOYEE;
