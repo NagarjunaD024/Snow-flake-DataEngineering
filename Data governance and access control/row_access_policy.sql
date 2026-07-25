@@ -31,3 +31,10 @@ grant role DATA_ANALYST_PASTRY to user IDENTIFIER($my_current_user);
 use role SYSADMIN;
 grant usage on warehouse BAKERY_WH to role DATA_ANALYST_BREAD;
 grant usage on warehouse BAKERY_WH to role DATA_ANALYST_PASTRY;
+
+
+-- to keep the exercise simple, the DATA_ENGINEER role creates and applies row access policies
+-- grant privileges to create and apply row access policies to the DATA_ENGINEER role
+use role ACCOUNTADMIN;
+grant create row access policy on schema BAKERY_DB.DG to role DATA_ENGINEER;
+grant apply row access policy on account to role DATA_ENGINEER;
