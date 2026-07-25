@@ -24,3 +24,13 @@ create role DATA_ANALYST;
 
 -- using the SECURITYADMIN role (because this role has the MANAGE GRANTS privilege)
 use role SECURITYADMIN;
+
+
+-- grant privileges to each of the access roles
+
+-- grant full privileges on database BAKERY_DB to the BAKERY_FULL role
+grant usage on database BAKERY_DB to role BAKERY_FULL;
+grant usage on all schemas in database BAKERY_DB to role BAKERY_FULL;
+grant all on schema BAKERY_DB.RAW to role BAKERY_FULL;
+grant all on schema BAKERY_DB.RPT to role BAKERY_FULL;
+
