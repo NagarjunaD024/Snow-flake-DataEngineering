@@ -20,3 +20,9 @@ returns varchar ->
     when current_role() in ('DATA_ENGINEER') then addr
     else '***'
   end;
+
+
+  -- apply the masking policy to the EMPLOYEE view in the RPT schema
+alter view BAKERY_DB.RPT.EMPLOYEE 
+modify column HOME_ADDRESS 
+set masking policy ADDRESS_MASK;
