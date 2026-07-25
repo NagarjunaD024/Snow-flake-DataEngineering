@@ -11,3 +11,8 @@ use role USERADMIN;
 -- create the functional roles
 create role DATA_ANALYST_BREAD;
 create role DATA_ANALYST_PASTRY;
+
+
+-- grant the BAKERY_READ access role to functional roles
+grant role BAKERY_READ to role DATA_ANALYST_BREAD;
+grant role BAKERY_READ to role DATA_ANALYST_PASTRY;
