@@ -6,3 +6,7 @@ use database BAKERY_DB;
 -- create schemas with managed access
 create schema RAW with managed access;
 create schema RPT with managed access;
+
+
+-- using the USERADMIN role (because this role has the CREATE ROLE privilege)
+use role USERADMIN;
