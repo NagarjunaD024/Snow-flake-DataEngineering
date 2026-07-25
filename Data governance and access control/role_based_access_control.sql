@@ -75,4 +75,12 @@ grant usage on warehouse BAKERY_WH to role DATA_ANALYST;
 
 
 
+-- to test, use the DATA_ENGINEER role to create a table in the RAW schema and insert some sample values
+use role DATA_ENGINEER;
+use warehouse BAKERY_WH;
+use database BAKERY_DB;
+use schema RAW;
+
+
+
 
