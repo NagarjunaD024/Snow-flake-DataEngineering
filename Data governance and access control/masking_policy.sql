@@ -10,3 +10,13 @@ use role DATA_ENGINEER;
 use warehouse BAKERY_WH;
 use database BAKERY_DB;
 use schema DG;
+
+
+-- create a masking policy that masks the addr column when the current role is not DATA_ENGINEER
+create masking policy ADDRESS_MASK 
+as (addr varchar) 
+returns varchar ->
+  case
+    when current_role() in ('DATA_ENGINEER') then addr
+    else '***'
+  end;
