@@ -26,3 +26,9 @@ returns varchar ->
 alter view BAKERY_DB.RPT.EMPLOYEE 
 modify column HOME_ADDRESS 
 set masking policy ADDRESS_MASK;
+
+
+-- to test, use one of the data analyst roles
+-- should return masked data
+use role DATA_ANALYST_BREAD;
+select * from BAKERY_DB.RPT.EMPLOYEE;
