@@ -72,3 +72,9 @@ alter view BAKERY_DB.RPT.EMPLOYEE add row access policy RAP_BUSINES_UNIT on (DEP
 -- the DATA_ANALYST_BREAD role should see only the data in the 'Bread' department
 use role DATA_ANALYST_BREAD;
 select * from BAKERY_DB.RPT.EMPLOYEE;
+
+
+
+-- the DATA_ANALYST_PASTRY role should see only the data in the 'Pastry' department
+use role DATA_ANALYST_PASTRY;
+select * from BAKERY_DB.RPT.EMPLOYEE;
