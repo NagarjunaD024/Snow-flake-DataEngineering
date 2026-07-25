@@ -42,3 +42,9 @@ grant select on all tables in schema BAKERY_DB.RPT to role BAKERY_READ;
 grant select on all views in schema BAKERY_DB.RPT to role BAKERY_READ;
 
 
+-- grant future privileges
+grant select on future tables in schema BAKERY_DB.RPT to role BAKERY_READ;
+grant select on future views in schema BAKERY_DB.RPT to role BAKERY_READ;
+
+
+
