@@ -45,3 +45,20 @@ use role DATA_ENGINEER;
 use warehouse BAKERY_WH;
 use database BAKERY_DB;
 use schema DG;
+
+
+create row access policy DG.RAP_BUSINES_UNIT 
+as (DEPARTMENT varchar) 
+returns boolean -> 
+  case
+-- return TRUE when the role is the creator of the row access policy
+    when (is_role_in_session('DATA_ENGINEER'))
+      then TRUE
+-- grant access based on the mapping of role and department
+    when (is_role_in_session('DATA_ANALYST_BREAD')) and DEPARTMENT = 'Bread'
+      then TRUE
+    when (is_role_in_session('DATA_ANALYST_PASTRY')) and DEPARTMENT = 'Pastry'
+      then TRUE
+-- otherwise return FALSE
+    else FALSE
+  end;
