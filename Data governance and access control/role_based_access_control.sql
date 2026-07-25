@@ -10,3 +10,8 @@ create schema RPT with managed access;
 
 -- using the USERADMIN role (because this role has the CREATE ROLE privilege)
 use role USERADMIN;
+
+
+-- create the access roles for full access and for read-only access
+create role BAKERY_FULL;
+create role BAKERY_READ;
