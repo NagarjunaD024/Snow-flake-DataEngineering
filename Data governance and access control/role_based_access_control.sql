@@ -83,4 +83,20 @@ use schema RAW;
 
 
 
+create table EMPLOYEE (
+  id integer,
+  name varchar,
+  home_address varchar,
+  department varchar,
+  hire_date date
+);
+
+insert into EMPLOYEE values
+(1001, 'William Jones', '5170 Arcu St.', 'Bread', '2020-02-01'),
+(1002, 'Alexander North', '261 Ipsum Rd.', 'Pastry', '2021-04-01'),
+(1003, 'Jennifer Navarro', '880 Dictum Ave.', 'Pastry', '2019-08-01'),
+(1004, 'Sandra Perkins', '55 Velo St.', 'Bread', '2022-05-01');
+
+
+
 
