@@ -17,3 +17,8 @@ select
 from EXT.JSON_ORDERS_EXT E,
 lateral flatten (input => customer_orders:"Orders") CO,
 lateral flatten (input => CO.value:"Orders by day") DO;
+
+
+-- view data in the view
+select *
+from JSON_ORDERS_STG;
