@@ -22,3 +22,7 @@ grant all on schema BAKERY_DB.MGMT to role BAKERY_FULL;
 -- grant read-only privileges on the MGMT schema to the BAKERY_READ role
 grant select on all tables in schema BAKERY_DB.MGMT to role BAKERY_READ;
 grant select on all views in schema BAKERY_DB.MGMT to role BAKERY_READ;
+
+-- grant future privileges
+grant select on future tables in schema BAKERY_DB.MGMT to role BAKERY_READ;
+grant select on future views in schema BAKERY_DB.MGMT to role BAKERY_READ;
