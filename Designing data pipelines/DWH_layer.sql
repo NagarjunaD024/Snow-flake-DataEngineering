@@ -7,3 +7,8 @@ use schema DWH;
 create view PARTNER as
 select partner_id, partner_name, address, rating
 from STG.PARTNER;
+
+
+create view PRODUCT as
+select product_id, product_name, category, min_quantity, price, valid_from
+from STG.PRODUCT;
