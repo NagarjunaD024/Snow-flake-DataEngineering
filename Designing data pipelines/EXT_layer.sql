@@ -17,3 +17,19 @@ create table JSON_ORDERS_EXT (
   source_file_name varchar,
   load_ts timestamp
 );
+
+
+-- copy data from the stage into the extract table
+copy into JSON_ORDERS_EXT
+from (
+  select 
+    $1, 
+    metadata$filename, 
+    current_timestamp() 
+  from @JSON_ORDERS_STAGE
+)
+on_error = abort_statement
+;
+
+select * from JSON_ORDERS_EXT;
+-- output should show two rows, one for each file you uploaded
