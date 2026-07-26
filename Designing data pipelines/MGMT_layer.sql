@@ -10,3 +10,12 @@ from dwh.ORDERS ORD
 left join dwh.PRODUCT PRD
 on ORD.product_id = PRD.product_id
 group by all;
+
+
+-- use the DATA_ANALYST role to select data from the summary view
+use role DATA_ANALYST;
+use warehouse BAKERY_WH;
+use database BAKERY_DB;
+use schema MGMT;
+
+select * from ORDERS_SUMMARY;
