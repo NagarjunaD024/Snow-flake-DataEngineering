@@ -38,3 +38,7 @@ where METADATA$ACTION = 'INSERT';
 -- check that the stream is now empty
 select * from PRODUCT_STREAM;
 
+
+-- view data in the target table
+select * from DWH.PRODUCT_TBL;
+
