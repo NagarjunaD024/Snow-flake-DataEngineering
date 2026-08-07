@@ -51,3 +51,13 @@ where valid_to = '9999-12-31';
 -- select products that were valid on August 1, 2023
 select * from DWH.PRODUCT_VALID_TS
 where valid_from <= '2023-08-01' and valid_to > '2023-08-01';
+
+
+-- summarize data for reporting by taking the product category that is valid currently
+-- Listing 12.3.
+select ORD.delivery_date, PRD.product_name, PRD.category, 
+  sum(ORD.quantity) as total_quantity
+from dwh.ORDERS_TBL ORD
+left join (select * from dwh.PRODUCT_VALID_TS where valid_to = '9999-12-31') PRD
+on ORD.product_id = PRD.product_id
+group by all;
