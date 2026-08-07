@@ -23,3 +23,10 @@ update PARTNER
 select * from PARTNER_STREAM;
 
 
+-- consume the stream by inserting into the target table
+insert into DWH.PARTNER_TBL
+select partner_id, partner_name, address, rating, valid_from
+from PARTNER_STREAM
+where METADATA$ACTION = 'INSERT';
+
+
