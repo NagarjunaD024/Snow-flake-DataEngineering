@@ -21,3 +21,7 @@ update PRODUCT
   
 insert into PRODUCT values
   (13, 'Sourdough Bread', 'Bread', 1, 3.6, '2023-08-08');
+
+
+  -- view the contents of the stream
+select * from PRODUCT_STREAM;
