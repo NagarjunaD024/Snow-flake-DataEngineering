@@ -46,3 +46,8 @@ group by all;
 -- select products that are valid currently
 select * from DWH.PRODUCT_VALID_TS
 where valid_to = '9999-12-31';
+
+
+-- select products that were valid on August 1, 2023
+select * from DWH.PRODUCT_VALID_TS
+where valid_from <= '2023-08-01' and valid_to > '2023-08-01';
