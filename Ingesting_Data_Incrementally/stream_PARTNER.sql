@@ -6,3 +6,9 @@ use schema DWH;
 -- create a table in the data warehouse layer and populate initially with the data from the staging layer
 create table PARTNER_TBL as select * from STG.PARTNER;
 select * from PARTNER_TBL;
+
+
+-- create a stream on the table in the staging layer
+use schema STG;
+create stream PARTNER_STREAM on table PARTNER;
+
