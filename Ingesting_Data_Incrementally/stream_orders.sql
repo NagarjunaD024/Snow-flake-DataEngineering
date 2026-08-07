@@ -19,3 +19,7 @@ on table JSON_ORDERS_EXT;
 
 -- view data in the stream
 select * from JSON_ORDERS_STREAM;
+
+
+-- view files in the stage
+list @JSON_ORDERS_STAGE;
