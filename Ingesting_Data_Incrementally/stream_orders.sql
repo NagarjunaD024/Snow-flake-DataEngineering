@@ -15,3 +15,7 @@ create or replace table JSON_ORDERS_EXT (
 -- create a stream on the table
 create stream JSON_ORDERS_STREAM 
 on table JSON_ORDERS_EXT;
+
+
+-- view data in the stream
+select * from JSON_ORDERS_STREAM;
