@@ -3,3 +3,15 @@ use role DATA_ENGINEER;
 use warehouse BAKERY_WH;
 use database BAKERY_DB;
 use schema DWH;
+
+
+
+-- construct a query that adds primary keys from the PARTNER and PRODUCT tables
+-- Listing 12.1.
+select PT.partner_id, PRD.product_id, ORD.delivery_date, 
+  ORD.order_date, ORD.quantity  
+from STG.JSON_ORDERS_TBL_STG ORD
+inner join STG.PARTNER PT
+  on PT.partner_name = ORD.customer
+inner join STG.PRODUCT PRD
+  on PRD.product_name = ORD.baked_good_type;
