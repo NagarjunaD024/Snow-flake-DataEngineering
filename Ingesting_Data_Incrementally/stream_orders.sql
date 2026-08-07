@@ -68,3 +68,8 @@ select
 from EXT.JSON_ORDERS_STREAM,
 lateral flatten (input => customer_orders:"Orders") CO,
 lateral flatten (input => CO.value:"Orders by day") DO;
+
+
+
+-- check the data in the table:
+select * from STG.JSON_ORDERS_TBL_STG;
