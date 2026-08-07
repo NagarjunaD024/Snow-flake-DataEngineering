@@ -41,3 +41,8 @@ from dwh.ORDERS_TBL ORD
 left join dwh.PRODUCT_TBL PRD
 on ORD.product_id = PRD.product_id
 group by all;
+
+
+-- select products that are valid currently
+select * from DWH.PRODUCT_VALID_TS
+where valid_to = '9999-12-31';
