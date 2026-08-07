@@ -10,3 +10,8 @@ create or replace table JSON_ORDERS_EXT (
   source_file_name varchar,
   load_ts timestamp
 );
+
+
+-- create a stream on the table
+create stream JSON_ORDERS_STREAM 
+on table JSON_ORDERS_EXT;
