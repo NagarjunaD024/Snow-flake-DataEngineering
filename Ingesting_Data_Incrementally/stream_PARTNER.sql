@@ -34,3 +34,7 @@ where METADATA$ACTION = 'INSERT';
 select * from PARTNER_STREAM;
 
 
+-- view data in the target table
+select * from DWH.PARTNER_TBL;
+
+
