@@ -61,3 +61,19 @@ from dwh.ORDERS_TBL ORD
 left join (select * from dwh.PRODUCT_VALID_TS where valid_to = '9999-12-31') PRD
 on ORD.product_id = PRD.product_id
 group by all;
+
+
+
+use schema MGMT;
+create dynamic table ORDERS_SUMMARY_TBL
+  target_lag = '1 minute'
+  warehouse = BAKERY_WH
+  as 
+select ORD.delivery_date, PRD.product_name, PRD.category, 
+  sum(ORD.quantity) as total_quantity
+from dwh.ORDERS_TBL ORD
+left join (select * from dwh.PRODUCT_VALID_TS where valid_to = '9999-12-31') PRD
+on ORD.product_id = PRD.product_id
+group by all;
+
+select * from ORDERS_SUMMARY_TBL;
