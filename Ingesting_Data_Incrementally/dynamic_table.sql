@@ -30,3 +30,14 @@ inner join STG.PARTNER PT
   on PT.partner_name = ORD.customer
 inner join STG.PRODUCT PRD
   on PRD.product_name = ORD.baked_good_type;
+
+
+
+-- summarize data for reporting
+-- Listing 12.2.
+select ORD.delivery_date, PRD.product_name, PRD.category, 
+  sum(ORD.quantity) as total_quantity
+from dwh.ORDERS_TBL ORD
+left join dwh.PRODUCT_TBL PRD
+on ORD.product_id = PRD.product_id
+group by all;
