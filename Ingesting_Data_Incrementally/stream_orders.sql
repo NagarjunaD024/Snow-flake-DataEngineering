@@ -23,3 +23,16 @@ select * from JSON_ORDERS_STREAM;
 
 -- view files in the stage
 list @JSON_ORDERS_STAGE;
+
+
+-- copy data from the stage into the JSON_ORDERS_EXT table
+copy into JSON_ORDERS_EXT
+from (
+  select 
+    $1, 
+    metadata$filename, 
+    current_timestamp() 
+  from @JSON_ORDERS_STAGE
+)
+on_error = abort_statement
+;
