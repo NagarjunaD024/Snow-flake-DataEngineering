@@ -38,3 +38,22 @@ select * from PARTNER_STREAM;
 select * from DWH.PARTNER_TBL;
 
 
+
+-- create a view in the data warehouse layer that calculates the end timestamp of the validity interval
+create view DWH.PARTNER_VALID_TS as
+select 
+  partner_id, 
+  partner_name, 
+  address, 
+  rating,
+  valid_from,
+  NVL(
+    LEAD(valid_from) over (partition by partner_id order by valid_from),
+    '9999-12-31'
+  ) as valid_to
+from DWH.PARTNER_TBL
+order by partner_id;
+
+select * from DWH.PARTNER_VALID_TS;
+
+
