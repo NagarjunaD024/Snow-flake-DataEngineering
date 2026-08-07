@@ -77,3 +77,17 @@ select * from STG.JSON_ORDERS_TBL_STG;
 
 -- check the data in the stream again
 select * from JSON_ORDERS_STREAM;
+
+
+
+-- copy data from the stage into the JSON_ORDERS_EXT table
+copy into JSON_ORDERS_EXT
+from (
+  select 
+    $1, 
+    metadata$filename, 
+    current_timestamp() 
+  from @JSON_ORDERS_STAGE
+)
+on_error = abort_statement
+;
