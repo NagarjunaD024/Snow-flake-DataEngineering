@@ -73,3 +73,7 @@ lateral flatten (input => CO.value:"Orders by day") DO;
 
 -- check the data in the table:
 select * from STG.JSON_ORDERS_TBL_STG;
+
+
+-- check the data in the stream again
+select * from JSON_ORDERS_STREAM;
