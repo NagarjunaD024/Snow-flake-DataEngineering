@@ -36,3 +36,7 @@ from (
 )
 on_error = abort_statement
 ;
+
+
+-- check the data in the stream again
+select * from JSON_ORDERS_STREAM;
