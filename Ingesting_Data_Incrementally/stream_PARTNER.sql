@@ -30,3 +30,7 @@ from PARTNER_STREAM
 where METADATA$ACTION = 'INSERT';
 
 
+-- check that the stream is now empty
+select * from PARTNER_STREAM;
+
+
