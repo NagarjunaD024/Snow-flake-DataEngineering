@@ -12,3 +12,9 @@ select * from PARTNER_TBL;
 use schema STG;
 create stream PARTNER_STREAM on table PARTNER;
 
+
+-- make some changes in the staging table: one update
+update PARTNER
+  set rating = 'A', valid_from = '2023-08-08'
+  where partner_id = 103;
+
