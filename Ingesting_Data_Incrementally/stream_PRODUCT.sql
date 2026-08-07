@@ -59,3 +59,6 @@ select
 from DWH.PRODUCT_TBL
 order by product_id;
 
+
+select * from DWH.PRODUCT_VALID_TS;
+
