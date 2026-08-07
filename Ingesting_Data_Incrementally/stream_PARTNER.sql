@@ -18,3 +18,8 @@ update PARTNER
   set rating = 'A', valid_from = '2023-08-08'
   where partner_id = 103;
 
+
+-- view the contents of the stream
+select * from PARTNER_STREAM;
+
+
