@@ -25,3 +25,10 @@ insert into PRODUCT values
 
   -- view the contents of the stream
 select * from PRODUCT_STREAM;
+
+
+-- consume the stream by inserting into the target table
+insert into DWH.PRODUCT_TBL
+select product_id, product_name, category, min_quantity, price, valid_from
+from PRODUCT_STREAM
+where METADATA$ACTION = 'INSERT';
