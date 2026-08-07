@@ -32,3 +32,9 @@ insert into DWH.PRODUCT_TBL
 select product_id, product_name, category, min_quantity, price, valid_from
 from PRODUCT_STREAM
 where METADATA$ACTION = 'INSERT';
+
+
+
+-- check that the stream is now empty
+select * from PRODUCT_STREAM;
+
